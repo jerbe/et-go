@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/jerbe/et-go/proto";
+
+message C2R_Login {
+  uint32 RpcId = 1;
+  string AccessToken = 2;
+  int32 ZoneId = 3;
+}
+
+message R2C_Login {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  string Address = 4;
+  int64 GateId = 5;
+  string Token = 6;
+}
+
+message C2G_LoginGate {
+  uint32 RpcId = 1;
+  string Token = 2;
+  int64 GateId = 3;
+}
+
+message G2C_LoginGate {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  int64 PlayerId = 4;
+  int64 CharacterCount = 5;
+}
+
+message C2G_Ping {
+  uint32 RpcId = 1;
+}
+
+message G2C_Ping {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  int64 Time = 4;
+}

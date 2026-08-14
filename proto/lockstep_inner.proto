@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package etgo.proto.lockstep;
+
+option go_package = "github.com/jerbe/et-go/proto/locksteppb;locksteppb";
+
+message ActorId {
+  int32 ProcessId = 1;
+  int64 FiberId = 2;
+  int64 InstanceId = 3;
+}
+
+message G2Match_Match {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+}
+
+message Match2G_NotifyMatchSuccess {
+  int64 PlayerId = 1;
+  int64 MapActorId = 2;
+  int64 RoomActorId = 3;
+  ActorId MapActor = 4;
+  ActorId RoomActor = 5;
+}
+
+message Room2M_NotifyRoomDispose {
+  int64 RoomActorId = 1;
+  repeated int64 PlayerIds = 2;
+  int64 DisposeAt = 3;
+  ActorId RoomActor = 4;
+}
+
+message G2Room_Reconnect {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+}
+
+message M2Room_PlayerOffline {
+  int64 PlayerId = 1;
+}
+
+message Match2Map_CancelRoom {
+  uint32 RpcId = 1;
+  ActorId RoomActor = 2;
+  repeated int64 PlayerIds = 3;
+}
+
+message Map2Match_CancelRoom {
+  uint32 RpcId = 1;
+  bool Cancelled = 2;
+  string Message = 3;
+}
+
+message Match2G_CancelMatchSuccess {
+  int64 PlayerId = 1;
+  ActorId MapActor = 2;
+  ActorId RoomActor = 3;
+}

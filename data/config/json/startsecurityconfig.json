@@ -1,0 +1,14 @@
+{
+  "accessTokenFormat": "signed",
+  "accessTokenCurrentKeyId": "dev-primary",
+  "accessTokenKeys": [
+    {
+      "id": "dev-primary",
+      "secret": "et-go-local-development-secret-32-bytes-min"
+    }
+  ],
+  "corsAllowedOrigins": [
+    "http://127.0.0.1:3000"
+  ],
+  "loginRateLimitPerMinute": 10
+}

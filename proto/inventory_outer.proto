@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/jerbe/et-go/proto/inventorypb;inventorypb";
+
+message ItemInfo {
+  int64 ItemId = 1;
+  int32 ConfigId = 2;
+  int32 Count = 3;
+  int32 SlotIndex = 4;
+  int64 UniqueId = 5;
+}
+
+message C2M_GetBagInfo {
+  uint32 RpcId = 1;
+  int64 UnitId = 2;
+}
+
+message M2C_GetBagInfo {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  int32 MaxCapacity = 4;
+  repeated ItemInfo Items = 5;
+}
+
+message C2M_BagOperation {
+  uint32 RpcId = 1;
+  int64 UnitId = 2;
+  int32 OpType = 3;
+  int64 ItemId = 4;
+  int32 ConfigId = 5;
+  int32 Count = 6;
+  int32 SourceSlot = 7;
+  int32 TargetSlot = 8;
+}
+
+message M2C_BagOperation {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+message C2M_GetWarehouseInfo {
+  uint32 RpcId = 1;
+  int64 UnitId = 2;
+}
+
+message M2C_GetWarehouseInfo {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  int32 MaxCapacity = 4;
+  repeated ItemInfo Items = 5;
+}
+
+message C2M_WarehouseOperation {
+  uint32 RpcId = 1;
+  int64 UnitId = 2;
+  int32 OpType = 3;
+  int64 ItemId = 4;
+  int32 Count = 5;
+  int32 SourceSlot = 6;
+  int32 TargetSlot = 7;
+}
+
+message M2C_WarehouseOperation {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+message M2C_ItemChange {
+  int32 ChangeType = 1;
+  int32 Container = 2;
+  ItemInfo Item = 3;
+}

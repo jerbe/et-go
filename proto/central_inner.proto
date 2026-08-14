@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/jerbe/et-go/proto";
+
+message R2Central_AccountLogin {
+  uint32 RpcId = 1;
+  string Username = 2;
+  string Password = 3;
+}
+
+message Central2R_AccountLogin {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  string AccessToken = 4;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/jerbe/et-go/proto";
+
+message R2G_GateAssign {
+  uint32 RpcId = 1;
+  int64 AccountId = 2;
+}
+
+message G2R_GateAssign {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+  int64 GateId = 4;
+  string Token = 5;
+}
+
+message G2M_SessionDisconnect {
+  uint32 RpcId = 1;
+}

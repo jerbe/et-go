@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package etgo.proto;
+
+option go_package = "github.com/jerbe/et-go/proto";
+
+message G2Game_Login {
+  uint32 rpc_id = 1;
+  int64 account_id = 2;
+}
+
+message Game2G_Login {
+  uint32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+  int64 account_id = 4;
+  int32 zone_id = 5;
+  int64 player_id = 6;
+}

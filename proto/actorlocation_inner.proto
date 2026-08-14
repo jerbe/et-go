@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package etgo.proto.actorlocation;
+
+option go_package = "github.com/jerbe/et-go/proto/actorlocationpb";
+
+message ActorId {
+  int32 process_id = 1;
+  int64 fiber_id = 2;
+  int64 instance_id = 3;
+}
+
+message ObjectAddRequest {
+  int32 rpc_id = 1;
+  int32 type = 2;
+  int64 key = 3;
+  ActorId actor_id = 4;
+}
+
+message ObjectAddResponse {
+  int32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+}
+
+message ObjectLockRequest {
+  int32 rpc_id = 1;
+  int32 type = 2;
+  int64 key = 3;
+  ActorId actor_id = 4;
+  int32 time = 5;
+}
+
+message ObjectLockResponse {
+  int32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+}
+
+message ObjectUnLockRequest {
+  int32 rpc_id = 1;
+  int32 type = 2;
+  int64 key = 3;
+  ActorId old_actor_id = 4;
+  ActorId new_actor_id = 5;
+}
+
+message ObjectUnLockResponse {
+  int32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+}
+
+message ObjectRemoveRequest {
+  int32 rpc_id = 1;
+  int32 type = 2;
+  int64 key = 3;
+}
+
+message ObjectRemoveResponse {
+  int32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+}
+
+message ObjectGetRequest {
+  int32 rpc_id = 1;
+  int32 type = 2;
+  int64 key = 3;
+}
+
+message ObjectGetResponse {
+  int32 rpc_id = 1;
+  int32 error = 2;
+  string message = 3;
+  ActorId actor_id = 5;
+}

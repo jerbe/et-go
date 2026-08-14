@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/jerbe/et-go/proto/mapinnerpb;mapinnerpb";
+
+message ActorId {
+  int32 ProcessId = 1;
+  int64 FiberId = 2;
+  int64 InstanceId = 3;
+}
+
+message G2M_EnterMap {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+}
+
+message M2G_EnterMap {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+message M2M_UnitTransferRequest {
+  uint32 RpcId = 1;
+  ActorId OldActorId = 2;
+  bytes Unit = 3;
+  repeated bytes Entitys = 4;
+}
+
+message M2M_UnitTransferResponse {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}

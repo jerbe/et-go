@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package etgo.proto.lockstep;
+
+option go_package = "github.com/jerbe/et-go/proto/locksteppb;locksteppb";
+
+import "proto/lockstep_inner.proto";
+import "proto/map_outer.proto";
+
+message TSVector2 {
+  int64 X = 1;
+  int64 Y = 2;
+}
+
+message LSInput {
+  TSVector2 V = 1;
+  int32 Button = 2;
+}
+
+message OneFrameInputs {
+  map<int64, LSInput> Inputs = 1;
+}
+
+message LockStepUnitInfo {
+  int64 PlayerId = 1;
+  .proto.Float3 Position = 2;
+  .proto.Quaternion Rotation = 3;
+}
+
+message C2G_Match {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+}
+
+message G2C_Match {
+  uint32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+message G2C_NotifyMatchSuccess {
+  int64 MapActorId = 1;
+  int64 RoomActorId = 2;
+  ActorId MapActor = 3;
+  ActorId RoomActor = 4;
+}
+
+message C2Room_ChangeSceneFinish {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+}
+
+message Room2C_Start {
+  uint32 RpcId = 1;
+  int64 StartTime = 2;
+  repeated LockStepUnitInfo UnitInfos = 3;
+}
+
+message FrameMessage {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+  int32 Frame = 3;
+  LSInput Input = 4;
+}
+
+message FrameMessageResponse {
+  uint32 RpcId = 1;
+  bool Accepted = 2;
+}
+
+message C2Room_CheckHash {
+  uint32 RpcId = 1;
+  int64 PlayerId = 2;
+  int32 Frame = 3;
+  int64 Hash = 4;
+}
+
+message CheckHashResponse {
+  uint32 RpcId = 1;
+  int32 Frame = 2;
+  int32 SnapshotFrame = 3;
+  bytes Snapshot = 4;
+}
+
+message Room2C_CheckHashFail {
+  uint32 RpcId = 1;
+  int32 Frame = 2;
+  int32 SnapshotFrame = 3;
+  bytes Snapshot = 4;
+}
+
+message Room2C_AdjustUpdateTime {
+  uint32 RpcId = 1;
+  int64 DiffTime = 2;
+}
+
+message Room2C_Reconnect {
+  uint32 RpcId = 1;
+  int64 StartTime = 2;
+  repeated LockStepUnitInfo UnitInfos = 3;
+  int32 Frame = 4;
+  int32 SnapshotFrame = 5;
+  bytes Snapshot = 6;
+  repeated OneFrameInputs FrameInputs = 7;
+}
+
+message Match2Map_GetRoom {
+  uint32 RpcId = 1;
+  repeated int64 PlayerIds = 2;
+}
+
+message Map2Match_GetRoom {
+  uint32 RpcId = 1;
+  int64 MapActorId = 2;
+  int64 RoomActorId = 3;
+  ActorId MapActor = 4;
+  ActorId RoomActor = 5;
+}
